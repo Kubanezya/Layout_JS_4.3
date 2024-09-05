@@ -12,11 +12,14 @@ function start(){
     let a
     let input = document.querySelector('input')
      input.addEventListener('keyup', debounce (function(event) {
-        a=  this.value
-         console.log(a);
-         if (a.length>0){
-            github(a)}
-        else{document.querySelector('ul').innerHTML ='';}
+        a = this.value         
+        if (a.length>0 && a.trim() !== ''){
+            github(a)
+        }
+        else{
+            document.querySelector('.autocom-box').innerHTML ='';
+            input.value=''; 
+        }
      },500))
 }
 
@@ -70,7 +73,9 @@ document.querySelector('.autocom-box').addEventListener('click', function (event
     listItem_data.appendChild(document.createElement('li')).innerText = `Name: ${data[index].name}`;
     listItem_data.appendChild(document.createElement('li')).innerText = `Owner: ${data[index].owner}`;
     listItem_data.appendChild(document.createElement('li')).innerText = `Stars: ${data[index].stars}`;
-    id++; 
+    id++;
+    document.querySelector('input').value='' 
+    document.querySelector('.autocom-box').innerHTML='';
 })
 
 const list = document.querySelector('.list')
